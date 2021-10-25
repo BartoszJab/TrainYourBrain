@@ -3,8 +3,8 @@ package com.example.projectandroid.models;
 import java.util.Objects;
 
 public class User {
-    private final String username;
-    private String avatarUrl;
+    public final String username;
+    public String avatarUrl;
 
     public User(String username) {
         this.username = username;

@@ -77,6 +77,7 @@ class LoginFragment : Fragment() {
                     }
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
+                        binding.progressBar2.visibility = View.INVISIBLE
                         Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
                     }
                 }

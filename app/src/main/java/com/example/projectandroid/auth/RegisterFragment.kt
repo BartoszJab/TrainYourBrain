@@ -11,7 +11,10 @@ import android.widget.Toast
 import com.example.projectandroid.R
 import com.example.projectandroid.databinding.FragmentRegisterBinding
 import com.example.projectandroid.home.HomeActivity
+import com.example.projectandroid.models.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,6 +28,7 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var myAuth: FirebaseAuth
+    private val userCollectionRef = Firebase.firestore.collection("users")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,6 +68,13 @@ class RegisterFragment : Fragment() {
     private fun registerUser() {
         val email = binding.etEmail.text.toString()
         val password = binding.etPassword.text.toString()
+        val username = binding.etUsername.text.toString()
+
+        if (username.isEmpty()) {
+            val errorMessage = "Username must not be empty"
+            binding.etUsername.error = errorMessage
+            return
+        }
 
         // check passwords length
         if (password.length < 6) {
@@ -91,6 +102,8 @@ class RegisterFragment : Fragment() {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     myAuth.createUserWithEmailAndPassword(email, password).await()
+                    userCollectionRef.add(User(username)).await()
+
                     withContext(Dispatchers.Main) {
                         binding.progressBar.visibility = View.INVISIBLE
                         if (myAuth.currentUser != null) {
@@ -111,12 +124,10 @@ class RegisterFragment : Fragment() {
         val password = binding.etPassword.text.toString()
         val confirmPassword = binding.etPasswordConfirm.text.toString()
 
-        if (confirmPassword.isEmpty()) {
+        if (confirmPassword.isEmpty() || confirmPassword != password) {
             return false
         }
-        if (confirmPassword != password) {
-            return false
-        }
+
         return true
     }
 
