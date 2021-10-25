@@ -13,6 +13,7 @@ import com.example.projectandroid.databinding.FragmentRegisterBinding
 import com.example.projectandroid.home.HomeActivity
 import com.example.projectandroid.models.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -28,7 +29,6 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var myAuth: FirebaseAuth
-    private val userCollectionRef = Firebase.firestore.collection("users")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -102,14 +102,17 @@ class RegisterFragment : Fragment() {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     myAuth.createUserWithEmailAndPassword(email, password).await()
-                    userCollectionRef.add(User(username)).await()
+                    //userCollectionRef.add(User(username)).await()
+
+                    val profileUpdate = userProfileChangeRequest {
+                        displayName = username
+                    }
+                    myAuth.currentUser!!.updateProfile(profileUpdate).await()
 
                     withContext(Dispatchers.Main) {
                         binding.progressBar.visibility = View.INVISIBLE
-                        if (myAuth.currentUser != null) {
-                            activity?.finish()
-                            startActivity(Intent(activity, HomeActivity::class.java))
-                        }
+                        activity?.finish()
+                        startActivity(Intent(activity, HomeActivity::class.java))
                     }
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
