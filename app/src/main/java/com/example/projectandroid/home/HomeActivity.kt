@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val bottomNavigationView = binding.bottomNavigationView
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView2)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.homeFragmentContainer)
                 as NavHostFragment
         val navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.playersFragment, R.id.mainFragment, R.id.profileFragment))
