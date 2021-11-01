@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.projectandroid.R
 import com.example.projectandroid.databinding.ActivitySimonGameBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -21,22 +22,36 @@ class SimonGameActivity : AppCompatActivity() {
 
     lateinit var binding: ActivitySimonGameBinding
     private val viewModel: SimonViewModel by viewModels()
+    lateinit var heartsViews: List<ImageView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySimonGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val buttons = listOf<ImageView>(
+        val buttons = listOf(
             binding.iv1, binding.iv2, binding.iv3,
             binding.iv4, binding.iv5, binding.iv6,
             binding.iv7, binding.iv8, binding.iv9
         )
 
+        heartsViews = listOf(
+            binding.ivHeart1, binding.ivHeart2
+        )
+
         // set on click listeners for buttons
         for (i in buttons.indices) {
             buttons[i].setOnClickListener {
-                viewModel.checkUserSequenceCorrectness(i)
+                lifecycleScope.launch {
+                    if (viewModel.checkUserSequenceCorrectness(i)) {
+                        buttons[i].setColorFilter(Color.GREEN)
+                    } else {
+                        buttons[i].setColorFilter(Color.RED)
+                    }
+                    delay(500)
+                    buttons[i].setColorFilter(Color.GRAY)
+                }
+
             }
         }
 
@@ -60,5 +75,36 @@ class SimonGameActivity : AppCompatActivity() {
                 window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             }
         })
+
+        viewModel.mistakesNumber.observe(this, { newMistakesNumber ->
+            if (newMistakesNumber > 0) {
+                heartsViews[newMistakesNumber - 1].setImageResource(R.drawable.ic_heart_broken)
+                if (newMistakesNumber == MAX_MISTAKES) {
+                    showFinalDialog()
+                }
+            }
+        })
     }
+
+    private fun showFinalDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Game Over")
+            .setMessage("You've lost at round number ${viewModel.roundNumber.value}")
+            .setCancelable(false)
+            .setNegativeButton("Exit") {_, _ -> exitGame()}
+            .setPositiveButton("Play again") {_, _ -> restartGame()}
+            .show()
+    }
+
+    private fun exitGame() {
+        this.finish()
+    }
+
+    private fun restartGame() {
+        viewModel.reinitializeGameData()
+        for (heart in heartsViews) {
+            heart.setImageResource(R.drawable.ic_heart)
+        }
+    }
+
 }
