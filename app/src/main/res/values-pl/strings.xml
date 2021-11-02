@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="have_an_account_register"><u>Nie masz konta? Zarejestruj się</u></string>
+
+    <!-- SIMONG GAME -->
+    <string name="round_number">Runda: %d</string>
+
+    <!-- UNSCRAMBLE GAME -->
+    <string name="skip">Pomiń</string>
+    <string name="submit">Zatwierdź</string>
+    <string name="score">Wynik: %d</string>
+    <string name="word_count">%d z %d słów</string>
+    <string name="enter_your_word">Wprowadź słowo</string>
+    <string name="congratulations">Gratulacje!</string>
+    <string name="you_scored">"Zdobyłeś: %d punktów"</string>
+    <string name="exit">Wyjdź</string>
+    <string name="play_again">Zagraj ponownie</string>
+    <string name="try_again">Spróbuj ponownie!</string>
+    <string name="instructions">Odgadnij słowo z wymieszanych liter</string>
+    <string name="login_label">Logowanie</string>
+    <string name="login_button">Zaloguj się</string>
+    <string name="sign_out">Wyloguj się</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Hasło</string>
+    <string name="confirm_password">Potwierdź hasło</string>
+    <string name="register_label">Rejestracja</string>
+    <string name="register_button">Zarejestruj się</string>
+    <string name="players">Gracze</string>
+    <string name="home">Główna</string>
+    <string name="profile">Profil</string>
+</resources>

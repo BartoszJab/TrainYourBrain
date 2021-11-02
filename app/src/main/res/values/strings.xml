@@ -19,6 +19,18 @@
     <string name="play_again">Play Again</string>
     <string name="try_again">Try again!</string>
     <string name="instructions">Unscramble the word using all the letters.</string>
+    <string name="login_label">Login</string>
+    <string name="login_button">Login</string>
+    <string name="email">Email</string>
+    <string name="sign_out">Sign out</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="register_label">Register</string>
+    <string name="register_button">Register</string>
+    <string name="players">Players</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
 
     <string-array name="words"/>
 </resources>
