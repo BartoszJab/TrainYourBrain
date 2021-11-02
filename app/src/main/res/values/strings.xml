@@ -3,5 +3,22 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="have_an_account_register"><u>Dont have an account? Register</u></string>
+
+    <!-- SIMONG GAME -->
     <string name="round_number">Round: %d</string>
+
+    <!-- UNSCRAMBLE GAME -->
+    <string name="skip">Skip</string>
+    <string name="submit">Submit</string>
+    <string name="score">Score: %d</string>
+    <string name="word_count">%d of %d words</string>
+    <string name="enter_your_word">Enter your word</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="you_scored">"You scored: %d"</string>
+    <string name="exit">Exit</string>
+    <string name="play_again">Play Again</string>
+    <string name="try_again">Try again!</string>
+    <string name="instructions">Unscramble the word using all the letters.</string>
+
+    <string-array name="words"/>
 </resources>
