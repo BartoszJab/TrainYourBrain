@@ -94,11 +94,11 @@ class SimonGameActivity : AppCompatActivity() {
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
                             val documentSnapshot = simonCollectionRef.document(myAuth.currentUser!!.uid).get().await()
-                            val highestRound = documentSnapshot.toObject<Simon>()?.highestRound
+                            val highestRound = documentSnapshot.toObject<Simon>()?.highestRound ?: 0
 
                             // if round number is better than previous one then update the value
                             val currentRoundNumber = viewModel.roundNumber.value!!
-                            if (currentRoundNumber > highestRound!!) {
+                            if (currentRoundNumber > highestRound) {
                                 simonCollectionRef.document(myAuth.currentUser!!.uid)
                                     .set(Simon(currentRoundNumber))
                             }
