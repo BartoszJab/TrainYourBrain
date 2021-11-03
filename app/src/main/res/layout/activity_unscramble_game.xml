@@ -15,12 +15,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/skip"
-        app:layout_constraintBaseline_toBaselineOf="@+id/submit"
-        app:layout_constraintEnd_toStartOf="@+id/submit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnSubmit"
+        app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/submit"
+        android:id="@+id/btnSubmit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textField" />
 
     <TextView
-        android:id="@+id/textView_instructions"
+        android:id="@+id/tv_instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/instructions"
@@ -39,16 +39,16 @@
         app:layout_constraintBottom_toTopOf="@+id/textField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_unscrambled_word" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_unscrambled_word" />
 
     <TextView
-        android:id="@+id/textView_unscrambled_word"
+        android:id="@+id/tv_unscrambled_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
-        app:layout_constraintBottom_toTopOf="@+id/textView_instructions"
+        app:layout_constraintBottom_toTopOf="@+id/tv_instructions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/word_count"
@@ -58,18 +58,21 @@
         android:id="@+id/word_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         android:text="@string/word_count"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-        app:layout_constraintBottom_toTopOf="@+id/textView_unscrambled_word"
+        app:layout_constraintBottom_toTopOf="@+id/tv_unscrambled_word"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text
-            ="@{@string/word_count(gameViewModel.currentWordCount, maxNoOfWords)}" />
+        tools:text="@{@string/word_count(gameViewModel.currentWordCount, maxNoOfWords)}" />
 
     <TextView
         android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:text="@string/score"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
@@ -85,10 +88,10 @@
         android:hint="@string/enter_your_word"
         app:errorIconDrawable="@drawable/ic_error"
         app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_instructions">
+        app:layout_constraintTop_toBottomOf="@+id/tv_instructions">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_input_edit_text"
