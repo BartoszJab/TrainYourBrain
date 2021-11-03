@@ -29,4 +29,47 @@
     <string name="players">Gracze</string>
     <string name="home">Główna</string>
     <string name="profile">Profil</string>
+
+    <string-array name="words">
+        <item>kot</item>
+        <item>woda</item>
+        <item>gorliwość</item>
+        <item>strefa</item>
+        <item>zoologia</item>
+        <item>zygzak</item>
+        <item>zebra</item>
+        <item>pyszny</item>
+        <item>rok</item>
+        <item>jojo</item>
+        <item>jogurt</item>
+        <item>yoga</item>
+        <item>świat</item>
+        <item>zima</item>
+        <item>dobrze</item>
+        <item>wędrować</item>
+        <item>mors</item>
+        <item>wizja</item>
+        <item>głośność</item>
+        <item>odwiedzający</item>
+        <item>uniform</item>
+        <item>ciężarówka</item>
+        <item>użyteczny</item>
+        <item>razem</item>
+        <item>ulica</item>
+        <item>umiejętność</item>
+        <item>pokój</item>
+        <item>turysta</item>
+        <item>statek</item>
+        <item>taksówka</item>
+        <item>styl</item>
+        <item>nasienie</item>
+        <item>bieganie</item>
+        <item>sekret</item>
+        <item>osoba</item>
+        <item>puzle</item>
+        <item>piknik</item>
+        <item>koszulka</item>
+        <item>prezentacja</item>
+
+    </string-array>
 </resources>
