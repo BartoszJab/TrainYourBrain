@@ -29,6 +29,7 @@
     <string name="players">Gracze</string>
     <string name="home">Główna</string>
     <string name="profile">Profil</string>
+    <string name="bad_luck">Niestety!</string>
 
     <string-array name="words">
         <item>kot</item>
