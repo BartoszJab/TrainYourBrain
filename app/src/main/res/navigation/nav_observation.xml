@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_observation"
+    app:startDestination="@id/observationIntroFragment">
+
+    <fragment
+        android:id="@+id/observationIntroFragment"
+        android:name="com.example.projectandroid.game.observation.ObservationIntroFragment"
+        android:label="fragment_observation_intro"
+        tools:layout="@layout/fragment_observation_intro" >
+        <action
+            android:id="@+id/action_observationIntroFragment_to_observationGameFragment"
+            app:destination="@id/observationGameFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/observationGameFragment"
+        android:name="com.example.projectandroid.game.observation.ObservationGameFragment"
+        android:label="fragment_observation_game"
+        tools:layout="@layout/fragment_observation_game" >
+        <action
+            android:id="@+id/action_observationGameFragment_to_observationIntroFragment"
+            app:destination="@id/observationIntroFragment" />
+    </fragment>
+</navigation>
