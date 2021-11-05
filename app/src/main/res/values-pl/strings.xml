@@ -30,6 +30,15 @@
     <string name="home">Główna</string>
     <string name="profile">Profil</string>
     <string name="bad_luck">Niestety!</string>
+    <string name="how_many_times_have_you_seen_this_image">Ile razy widziałeś ten obrazek?</string>
+    <string name="your_guess">Twoja odpowiedź</string>
+    <string name="in_this_task_you_have_to_guess_how_many_times_you_ve_seen_an_iamge_shown_at_the_end">W tej grze musisz odpowiedzieć ile razy widziałeś obrazek pokazany na końcu</string>
+    <string name="difficulty">Poziom trudności</string> <!--In this task you have to guess how many times you\'ve seen an iamge shown at the end -->
+    <string name="normal">Normalny</string>
+    <string name="hard">Trudny</string>
+    <string name="easy">Łatwy</string>
+    <string name="observation_correctly_guessed">Prawidłowo odgadłeś ilość wystąpień tego obrazka</string>
+    <string name="observation_incorrectly_guessed">Podałeś nieprawidłową liczbę wystąpień tego obrazka</string>
 
     <string-array name="words">
         <item>kot</item>

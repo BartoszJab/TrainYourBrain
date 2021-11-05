@@ -32,6 +32,17 @@
     <string name="home">Home</string>
     <string name="profile">Profile</string>
     <string name="bad_luck">Bad luck!</string>
+    <string name="how_many_times_have_you_seen_this_image">How many times have you seen this image?</string>
+    <string name="your_guess">Your guess</string>
+    <string name="in_this_task_you_have_to_guess_how_many_times_you_ve_seen_an_iamge_shown_at_the_end">In this game you have to guess how many times you\'ve seen an image shown at the end</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="normal">Normal</string>
+    <string name="hard">Hard</string>
+    <string name="easy">Easy</string>
+    <string name="observation_correctly_guessed">You have correctly guessed the number of image occurrences</string>
+    <string name="observation_incorrectly_guessed">You have given the wrong number of image occurrences</string>
+
+
     <!--    "animal",-->
     <!--    "auto",-->
     <!--    "anecdote",-->
