@@ -39,15 +39,6 @@ class ObservationGameFragment : Fragment() {
         )
         viewModel.initializeGame(vectorImages)
 
-        // TODO: do something with this ugly piece of code
-        var delayBetweenImages: Long = 1500
-        viewModel.difficulty.observe(viewLifecycleOwner, { newDifficulty ->
-            delayBetweenImages = when (newDifficulty!!) {
-                ObservationGameViewModel.Difficulty.EASY -> 1500
-                ObservationGameViewModel.Difficulty.NORMAL -> 1300
-                ObservationGameViewModel.Difficulty.HARD -> 1000
-            }
-        })
 
         binding.btnSubmit.setOnClickListener {
             Log.d("OBSERVATION", binding.textInputEditText.text.toString())
@@ -67,7 +58,7 @@ class ObservationGameFragment : Fragment() {
                 delay(500)
                 for (id in newImageIdsToShow) {
                     binding.ivRandomVector.setImageResource(id)
-                    delay(delayBetweenImages)
+                    delay(viewModel.difficulty.value!!.imageTimeDuration)
                 }
                 binding.visibilityChangeGroup.isVisible = true
                 binding.ivRandomVector.setImageResource(viewModel.guessImageId.value!!)

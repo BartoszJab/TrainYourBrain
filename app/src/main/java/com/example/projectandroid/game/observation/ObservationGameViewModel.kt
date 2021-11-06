@@ -6,14 +6,6 @@ import androidx.lifecycle.ViewModel
 
 class ObservationGameViewModel : ViewModel() {
 
-    companion object {
-        var MAX_REPETITIONS: Int = 0
-    }
-
-    enum class Difficulty {
-        EASY, NORMAL, HARD
-    }
-
     private val _imageIdsToShow = MutableLiveData(mutableListOf<Int>())
     val imageIdsToShow: LiveData<MutableList<Int>>
         get() = _imageIdsToShow
@@ -26,15 +18,15 @@ class ObservationGameViewModel : ViewModel() {
     val numberOfImageOccurrences: LiveData<Int>
         get() = _numberOfImageOccurrences
 
-    private val _difficulty = MutableLiveData<Difficulty>()
-    val difficulty: LiveData<Difficulty>
+    private val _difficulty = MutableLiveData<ObservationDifficulty>()
+    val difficulty: LiveData<ObservationDifficulty>
         get() = _difficulty
 
     private fun getRandomPicturesId(vectorList: List<Int>): MutableList<Int> {
         // do not show the same image twice in a row
         val tempImageIdList = mutableListOf<Int>()
         var prevImgId: Int? = null
-        for (i in 0 until MAX_REPETITIONS) {
+        for (i in 0 until _difficulty.value!!.maxRepetitions) {
             var randomPictureId: Int
             if (i == 0) {
                 randomPictureId = vectorList.random()
@@ -56,14 +48,8 @@ class ObservationGameViewModel : ViewModel() {
         _numberOfImageOccurrences.value = _imageIdsToShow.value!!.count { it == _guessImageId.value }
     }
 
-    fun setDifficulty(difficulty: Difficulty) {
+    fun setDifficulty(difficulty: ObservationDifficulty) {
         _difficulty.value = difficulty
-
-        when (_difficulty.value) {
-            Difficulty.EASY -> MAX_REPETITIONS = 10
-            Difficulty.NORMAL -> MAX_REPETITIONS = 15
-            Difficulty.HARD -> MAX_REPETITIONS = 20
-        }
     }
 
 }
