@@ -58,11 +58,12 @@ class ObservationGameFragment : Fragment() {
             Log.d("OBSERVATION", binding.textInputEditText.text.toString())
             Log.d("OBSERVATION", viewModel.numberOfImageOccurrences.value.toString())
             if (binding.textInputEditText.text!!.isEmpty()) {
-                binding.textInputEditText.error = "Guess can't be empty"
+                binding.textInputEditText.error = getString(R.string.guess_cant_be_empty)
             } else {
                 val isGuessCorrect =
                     binding.textInputEditText.text.toString() == viewModel.numberOfImageOccurrences.value.toString()
                 showFinalDialog(wasGuessCorrect = isGuessCorrect)
+
                 val difficultyString = when (viewModel.difficulty.value!!) {
                     ObservationDifficulty.EASY -> "easy"
                     ObservationDifficulty.MEDIUM -> "medium"
@@ -102,6 +103,7 @@ class ObservationGameFragment : Fragment() {
     }
 
     private fun restartGame() {
+        binding.ivRandomVector.setImageResource(android.R.color.transparent)
         binding.visibilityChangeGroup.isVisible = false
         binding.textInputEditText.text!!.clear()
         viewModel.initializeGame(vectorImages)
