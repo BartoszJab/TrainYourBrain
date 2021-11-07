@@ -9,6 +9,7 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 class SimonViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
+
     private val _roundNumber = MutableLiveData(1)
     val roundNumber: LiveData<Int>
         get() = _roundNumber
@@ -22,7 +23,7 @@ class SimonViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel
         get() = _mistakesNumber
 
     init {
-         generateSequence()
+        generateSequence()
     }
 
     private fun increaseRoundNumber() {
@@ -53,16 +54,11 @@ class SimonViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel
     }
 
     private fun generateSequence() {
-        _generatedSequence.value = LinkedList()
+        val tempSequence = LinkedList<Int>()
         for (i in 1..(_roundNumber.value!! + 1)) {
             // range 0..8 because we have 9 buttons
-            _generatedSequence.value?.add(Random.nextInt(0..8))
+            tempSequence.add(Random.nextInt(0..8))
         }
-        _generatedSequence.notifyObserver()
-    }
-
-    // an extension method that triggers the observe method of MutableLiveData
-    fun <T> MutableLiveData<T>.notifyObserver() {
-        this.value = value
+        _generatedSequence.value = tempSequence
     }
 }
