@@ -55,6 +55,7 @@ class MathGameViewModel : ViewModel() {
     }
 
     fun restartGame() {
+        _score.value = 0
         getOperation()
     }
 
