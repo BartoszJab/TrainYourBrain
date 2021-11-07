@@ -70,4 +70,9 @@ class ObservationIntroFragment : Fragment() {
         }
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        _binding = null
+    }
+
 }
