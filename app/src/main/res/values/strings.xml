@@ -44,6 +44,8 @@
     <string name="observation_difficulty_description">%s - %d images and %.2f seconds single image time duration</string>
     <string name="observation_difficulty_description_label">Difficulty description</string>
     <string name="guess_cant_be_empty">Guess can\'t be empty</string>
+    <string name="math_operation_string">%d %s %d %s %d</string>
+    <string name="math_dialog_fail_message">You have chosen wrong answer. You scored %d points</string>
 
 
     <!--    "animal",-->

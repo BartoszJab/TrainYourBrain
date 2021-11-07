@@ -42,6 +42,8 @@
     <string name="observation_difficulty_description">%s - %d obrazków i %.2f sekundy wystąpienia pojedynczego obrazka</string>
     <string name="observation_difficulty_description_label">Opis poziomów trudności</string>
     <string name="guess_cant_be_empty">Odpowiedź nie może być pusta</string>
+    <string name="math_operation_string">%d %s %d %s %d</string>
+    <string name="math_dialog_fail_message">Wybrałeś złą odpowiedź. Zdobyłeś %d punktów</string>
 
     <string-array name="words">
         <item>kot</item>
