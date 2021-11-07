@@ -7,12 +7,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
 import com.example.projectandroid.R
 import com.example.projectandroid.databinding.FragmentMathGameBinding
+import com.example.projectandroid.models.MathGame
+import com.example.projectandroid.models.Unscramble
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class MathGameFragment : Fragment() {
 
@@ -21,6 +34,10 @@ class MathGameFragment : Fragment() {
 
     private val viewModel: MathGameViewModel by viewModels()
     private lateinit var myCounter: CountDownTimer
+
+    private lateinit var myAuth: FirebaseAuth
+    private lateinit var mathCollectionRef: CollectionReference
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +48,9 @@ class MathGameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        myAuth = FirebaseAuth.getInstance()
+        mathCollectionRef = Firebase.firestore.collection("math")
 
         val buttonsAnswer =
             listOf(binding.btnAnswer1, binding.btnAnswer2, binding.btnAnswer3, binding.btnAnswer4)
@@ -80,6 +100,7 @@ class MathGameFragment : Fragment() {
                     (newAnswer - 10..newAnswer + 10).filter { it != newAnswer }.random().toString()
                 otherButton.setOnClickListener {
                     showFinalDialog()
+                    saveToDatabase()
                     myCounter.cancel()
                 }
             }
@@ -121,5 +142,23 @@ class MathGameFragment : Fragment() {
         myCounter.start()
     }
 
+    private fun saveToDatabase() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val documentSnapshot = mathCollectionRef.document(myAuth.currentUser!!.uid).get().await()
+                val highestScore = documentSnapshot.toObject<MathGame>()?.highestScore ?: 0
+
+                val currentScore = viewModel.score.value!!
+                if (currentScore > highestScore) {
+                    mathCollectionRef.document(myAuth.currentUser!!.uid)
+                        .set(MathGame(currentScore))
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
 
 }
