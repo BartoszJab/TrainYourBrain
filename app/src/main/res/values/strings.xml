@@ -43,6 +43,7 @@
     <string name="observation_incorrectly_guessed">You have given the wrong number of image occurrences</string>
     <string name="observation_difficulty_description">%s - %d images and %.2f seconds single image time duration</string>
     <string name="observation_difficulty_description_label">Difficulty description</string>
+    <string name="guess_cant_be_empty">Guess can\'t be empty</string>
 
 
     <!--    "animal",-->
