@@ -28,7 +28,7 @@
             android:layout_width="@dimen/box_size"
             android:layout_height="@dimen/box_size"
             android:layout_marginBottom="16dp"
-            android:text="Button"
+            tools:text="54"
             app:layout_constraintBottom_toTopOf="@+id/btnAnswer3"
             app:layout_constraintEnd_toStartOf="@+id/btnAnswer2"
             app:layout_constraintHorizontal_bias="0.5"
@@ -40,7 +40,7 @@
             android:layout_width="@dimen/box_size"
             android:layout_height="@dimen/box_size"
             android:layout_marginBottom="16dp"
-            android:text="Button"
+            tools:text="48"
             app:layout_constraintBottom_toTopOf="@+id/btnAnswer4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -52,18 +52,18 @@
             android:layout_width="@dimen/box_size"
             android:layout_height="@dimen/box_size"
             android:layout_marginBottom="64dp"
-            android:text="Button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnAnswer4"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="41" />
 
         <Button
             android:id="@+id/btnAnswer4"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="@dimen/box_size"
             android:layout_height="@dimen/box_size"
-            android:text="Button"
+            tools:text="52"
             app:layout_constraintBottom_toBottomOf="@+id/btnAnswer3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -73,23 +73,24 @@
             android:id="@+id/tvQuestion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="64dp"
-            android:text="9 x 4 + 5"
+            android:layout_marginBottom="32dp"
+            tools:text="9 x 4 + 5"
             android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/btnAnswer1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tvCountDown"
-            android:layout_width="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:textSize="24sp"
+            android:textSize="34sp"
             android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@+id/tvQuestion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="10" />
 
         <ImageView
