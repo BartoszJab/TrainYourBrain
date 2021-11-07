@@ -46,6 +46,9 @@
     <string name="guess_cant_be_empty">Guess can\'t be empty</string>
     <string name="math_operation_string">%d %s %d %s %d</string>
     <string name="math_dialog_fail_message">You have chosen wrong answer. You scored %d points</string>
+    <string name="math_intro_description">There will be displayed an arithmetic operation. Your task is to select the correct answer out of four possible.</string>
+    <string name="math_intro_description2">Number next to this icon is time left for your answer.</string>
+    <string name="play">Play</string>
 
 
     <!--    "animal",-->

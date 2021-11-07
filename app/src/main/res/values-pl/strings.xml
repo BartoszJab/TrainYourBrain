@@ -44,6 +44,9 @@
     <string name="guess_cant_be_empty">Odpowiedź nie może być pusta</string>
     <string name="math_operation_string">%d %s %d %s %d</string>
     <string name="math_dialog_fail_message">Wybrałeś złą odpowiedź. Zdobyłeś %d punktów</string>
+    <string name="math_intro_description">Na ekranie wyświetlona zostanie operacja arytmetyczna. Twoim zadaniem jest wybranie poprawnej odpowiedzi spośród czterech.</string>
+    <string name="math_intro_description2">Liczba obok tej ikony oznacza pozostałą ilość czasu na odpowiedź.</string>
+    <string name="play">Graj</string>
 
     <string-array name="words">
         <item>kot</item>
