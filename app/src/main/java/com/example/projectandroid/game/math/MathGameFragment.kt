@@ -8,13 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
 import com.example.projectandroid.R
 import com.example.projectandroid.databinding.FragmentMathGameBinding
 import com.example.projectandroid.models.MathGame
-import com.example.projectandroid.models.Unscramble
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
@@ -87,17 +84,20 @@ class MathGameFragment : Fragment() {
 
         viewModel.answer.observe(viewLifecycleOwner, { newAnswer ->
             // set correct answer button
-            val btnAnswer = buttonsAnswer.random()
-            btnAnswer.text = newAnswer.toString()
-            btnAnswer.setOnClickListener {
+            val btnCorrectAnswer = buttonsAnswer.random()
+            btnCorrectAnswer.text = newAnswer.toString()
+            btnCorrectAnswer.setOnClickListener {
                 viewModel.correctGuess()
                 restartCounter()
             }
 
-            // set incorrect answer button
-            buttonsAnswer.filter { it != btnAnswer }.map { otherButton ->
-                otherButton.text =
-                    (newAnswer - 10..newAnswer + 10).filter { it != newAnswer }.random().toString()
+            // set incorrect answer buttons without duplicate values
+            val usedAnswers = mutableListOf(newAnswer)
+            buttonsAnswer.filter { it != btnCorrectAnswer }.map { otherButton ->
+                val wrongAnswer: Int = (newAnswer - 10..newAnswer + 10).filter { it !in usedAnswers }.random()
+                usedAnswers.add(wrongAnswer)
+                otherButton.text = wrongAnswer.toString()
+
                 otherButton.setOnClickListener {
                     showFinalDialog()
                     saveToDatabase()
