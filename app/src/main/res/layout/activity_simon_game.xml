@@ -6,109 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".game.simon.SimonGameActivity">
 
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        app:columnCount="3"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView3"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRoundNumber">
-
-        <ImageView
-            android:id="@+id/iv1"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:padding="5dp"
-            android:src="@color/grey" />
-
-        <ImageView
-            android:id="@+id/iv2"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:padding="5dp"
-            android:src="@color/grey" />
-
-        <ImageView
-            android:id="@+id/iv3"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:padding="5dp"
-            android:src="@color/grey" />
-
-        <ImageView
-            android:id="@+id/iv4"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:padding="5dp"
-            android:src="@color/grey" />
-
-        <ImageView
-            android:id="@+id/iv5"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:padding="5dp"
-            android:src="@color/grey" />
-
-        <ImageView
-            android:id="@+id/iv6"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:padding="5dp"
-            android:src="@color/grey" />
-
-        <ImageView
-            android:id="@+id/iv7"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:padding="5dp"
-            android:src="@color/grey" />
-
-        <ImageView
-            android:id="@+id/iv8"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:padding="5dp"
-            android:src="@color/grey" />
-
-        <ImageView
-            android:id="@+id/iv9"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:padding="5dp"
-            android:src="@color/grey" />
-    </androidx.gridlayout.widget.GridLayout>
-
-    <TextView
-        android:id="@+id/tvRoundNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Round: 1" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:id="@+id/ivHeart1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/ic_heart" />
-
-        <ImageView
-            android:id="@+id/ivHeart2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/ic_heart" />
-    </LinearLayout>
+        app:navGraph="@navigation/nav_simon_game" />
 </androidx.constraintlayout.widget.ConstraintLayout>

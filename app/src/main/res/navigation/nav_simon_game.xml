@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_simon_game"
+    app:startDestination="@id/simonIntroFragment">
+
+    <fragment
+        android:id="@+id/simonIntroFragment"
+        android:name="com.example.projectandroid.game.simon.SimonIntroFragment"
+        android:label="fragment_simon_intro"
+        tools:layout="@layout/fragment_simon_intro" >
+        <action
+            android:id="@+id/action_simonIntroFragment_to_simonGameFragment"
+            app:destination="@id/simonGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/simonGameFragment"
+        android:name="com.example.projectandroid.game.simon.SimonGameFragment"
+        android:label="fragment_simon_game"
+        tools:layout="@layout/fragment_simon_game" >
+        <action
+            android:id="@+id/action_simonGameFragment_to_simonIntroFragment"
+            app:destination="@id/simonIntroFragment" />
+    </fragment>
+</navigation>
