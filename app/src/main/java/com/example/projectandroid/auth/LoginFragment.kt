@@ -54,8 +54,8 @@ class LoginFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDetach() {
+        super.onDetach()
         _binding = null
     }
 
