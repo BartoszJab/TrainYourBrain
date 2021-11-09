@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_unscramble_game"
+    app:startDestination="@id/unscrambleIntroFragment">
+
+    <fragment
+        android:id="@+id/unscrambleIntroFragment"
+        android:name="com.example.projectandroid.game.unscramble.UnscrambleIntroFragment"
+        android:label="fragment_unscramble_intro"
+        tools:layout="@layout/fragment_unscramble_intro" >
+        <action
+            android:id="@+id/action_unscrambleIntroFragment_to_unscrambleGameFragment"
+            app:destination="@id/unscrambleGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/unscrambleGameFragment"
+        android:name="com.example.projectandroid.game.unscramble.UnscrambleGameFragment"
+        android:label="fragment_unscramble_game"
+        tools:layout="@layout/fragment_unscramble_game" >
+        <action
+            android:id="@+id/action_unscrambleGameFragment_to_unscrambleIntroFragment"
+            app:destination="@id/unscrambleIntroFragment" />
+    </fragment>
+</navigation>
