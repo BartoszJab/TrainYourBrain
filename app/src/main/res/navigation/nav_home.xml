@@ -8,16 +8,16 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.projectandroid.home.MainFragment"
-        android:label="Home"
+        android:label="@string/home"
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.projectandroid.home.ProfileFragment"
-        android:label="Profile"
+        android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/playersFragment"
         android:name="com.example.projectandroid.home.PlayersFragment"
-        android:label="Players"
+        android:label="@string/players"
         tools:layout="@layout/fragment_players" />
 </navigation>
