@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.example.projectandroid.R
 import com.example.projectandroid.databinding.FragmentMathGameBinding
 import com.example.projectandroid.models.MathGame
+import com.example.projectandroid.models.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
@@ -146,12 +147,21 @@ class MathGameFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val documentSnapshot = mathCollectionRef.document(myAuth.currentUser!!.uid).get().await()
-                val highestScore = documentSnapshot.toObject<MathGame>()?.highestScore ?: 0
+                val highestScore: Int
+                val snapshotMathModel = documentSnapshot.toObject<MathGame>()
+
+                if (snapshotMathModel == null) {
+                    val user = User(myAuth.currentUser?.displayName, myAuth.currentUser?.photoUrl.toString())
+                    mathCollectionRef.document(myAuth.currentUser!!.uid).set(MathGame(0, user))
+                    highestScore = 0
+                } else {
+                    highestScore = snapshotMathModel.highestScore
+                }
 
                 val currentScore = viewModel.score.value!!
                 if (currentScore > highestScore) {
                     mathCollectionRef.document(myAuth.currentUser!!.uid)
-                        .set(MathGame(currentScore))
+                        .update("highestScore", currentScore)
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
