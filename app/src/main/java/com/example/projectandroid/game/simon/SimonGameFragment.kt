@@ -14,7 +14,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.projectandroid.R
 import com.example.projectandroid.databinding.FragmentSimonGameBinding
+import com.example.projectandroid.models.MathGame
 import com.example.projectandroid.models.Simon
+import com.example.projectandroid.models.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -100,13 +102,22 @@ class SimonGameFragment : Fragment() {
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
                             val documentSnapshot = simonCollectionRef.document(myAuth.currentUser!!.uid).get().await()
-                            val highestRound = documentSnapshot.toObject<Simon>()?.highestRound ?: 0
+                            val highestRound: Int
+                            val snapshotSimonModel = documentSnapshot.toObject<Simon>()
+
+                            if (snapshotSimonModel == null) {
+                                val user = User(myAuth.currentUser?.displayName, myAuth.currentUser?.photoUrl.toString())
+                                simonCollectionRef.document(myAuth.currentUser!!.uid).set(Simon(0, user))
+                                highestRound = 0
+                            } else {
+                                highestRound = snapshotSimonModel.highestRound
+                            }
 
                             // if round number is better than previous one then update the value
                             val currentRoundNumber = viewModel.roundNumber.value!!
                             if (currentRoundNumber > highestRound) {
                                 simonCollectionRef.document(myAuth.currentUser!!.uid)
-                                    .set(Simon(currentRoundNumber))
+                                    .update("highestRound", currentRoundNumber)
                             }
 
                             //simonCollectionRef.add(Simon(viewModel.roundNumber.value!!))
