@@ -47,12 +47,6 @@ class RegisterFragment : Fragment() {
         binding.btnRegister.setOnClickListener {
             registerUser()
         }
-
-//        if (binding.etEmail.text.isNotEmpty() &&
-//            !android.util.Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text).matches()) {
-//                val errorMessage = "Give a correct email"
-//                binding.etEmail.error = errorMessage
-//        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,7 +96,6 @@ class RegisterFragment : Fragment() {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     myAuth.createUserWithEmailAndPassword(email, password).await()
-                    //userCollectionRef.add(User(username)).await()
 
                     val profileUpdate = userProfileChangeRequest {
                         displayName = username
