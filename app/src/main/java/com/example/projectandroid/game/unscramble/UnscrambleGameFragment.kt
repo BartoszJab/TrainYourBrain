@@ -10,7 +10,9 @@ import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import com.example.projectandroid.R
 import com.example.projectandroid.databinding.FragmentUnscrambleGameBinding
+import com.example.projectandroid.models.Simon
 import com.example.projectandroid.models.Unscramble
+import com.example.projectandroid.models.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
@@ -102,13 +104,21 @@ class UnscrambleGameFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val documentSnapshot = unscrambleCollectionRef.document(myAuth.currentUser!!.uid).get().await()
-                val highestScore = documentSnapshot.toObject<Unscramble>()?.highestScore ?: 0
+                val highestScore: Int
+                val snapshotUnscrambleModel = documentSnapshot.toObject<Unscramble>()
+
+                if (snapshotUnscrambleModel == null) {
+                    val user = User(myAuth.currentUser?.displayName, myAuth.currentUser?.photoUrl.toString())
+                    unscrambleCollectionRef.document(myAuth.currentUser!!.uid).set(Unscramble(0, user))
+                    highestScore = 0
+                } else {
+                    highestScore = snapshotUnscrambleModel.highestScore
+                }
 
                 val currentScore = viewModel.score.value!!
-
                 if (currentScore > highestScore) {
                     unscrambleCollectionRef.document(myAuth.currentUser!!.uid)
-                        .set(Unscramble(currentScore))
+                        .update("highestScore", currentScore)
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
