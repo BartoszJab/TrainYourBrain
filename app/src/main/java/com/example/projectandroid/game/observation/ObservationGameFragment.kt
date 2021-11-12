@@ -13,11 +13,14 @@ import androidx.lifecycle.lifecycleScope
 import com.example.projectandroid.R
 import com.example.projectandroid.databinding.FragmentObservationGameBinding
 import com.example.projectandroid.models.Observation
+import com.example.projectandroid.models.Unscramble
+import com.example.projectandroid.models.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
@@ -122,9 +125,15 @@ class ObservationGameFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val documentSnapshot = observationCollectionRef.document(myAuth.currentUser!!.uid).get().await()
-                if (!documentSnapshot.exists()) {
-                    observationCollectionRef.document(myAuth.currentUser!!.uid).set(Observation())
+                val snapshotObservationModel = documentSnapshot.toObject<Observation>()
+
+                if (snapshotObservationModel == null) {
+                    val user = User(myAuth.currentUser?.displayName, myAuth.currentUser?.photoUrl.toString())
+                    observationCollectionRef.document(myAuth.currentUser!!.uid).set(Observation(user))
                 }
+//                if (!documentSnapshot.exists()) {
+//                    observationCollectionRef.document(myAuth.currentUser!!.uid).set(Observation())
+//                }
                 val postfix = if (wasGuessed) "guessed" else "not_guessed"
                 observationCollectionRef.document(myAuth.currentUser!!.uid).update("$difficulty.$postfix", FieldValue.increment(1))
             } catch (e: Exception) {

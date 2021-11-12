@@ -6,8 +6,11 @@ public class Observation {
     public HashMap<String, Integer> easy;
     public HashMap<String, Integer> medium;
     public HashMap<String, Integer> hard;
+    public User user;
 
-    public Observation() {
+    public Observation() {}
+
+    public Observation(User user) {
         this.easy = new HashMap<String, Integer>(){{
            put("guessed", 0);
            put("not_guessed", 0);
@@ -22,6 +25,8 @@ public class Observation {
             put("guessed", 0);
             put("not_guessed", 0);
         }};
+
+        this.user = user;
     }
 
 }
