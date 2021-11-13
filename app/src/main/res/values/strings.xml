@@ -49,6 +49,7 @@
     <string name="math_intro_description">There will be displayed an arithmetic operation. Your task is to select the correct answer out of four possible.</string>
     <string name="math_intro_description2">Number next to this icon is time left for your answer.</string>
     <string name="play">Play</string>
+    <string name="observation_game_percentage_value" translatable="false">%d%%</string>
 
 
     <!--    "animal",-->
