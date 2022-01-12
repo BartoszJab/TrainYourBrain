@@ -1,6 +1,7 @@
 package com.example.projectandroid.game.simon
 
 import android.graphics.Color
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.projectandroid.R
@@ -79,6 +81,7 @@ class SimonGameFragment : Fragment() {
 
         viewModel.generatedSequence.observe(viewLifecycleOwner, { newGeneratedSequence ->
             lifecycleScope.launch {
+
                 // window with given flags make user not interact with UI when he's being shown the sequence
                 activity?.window?.setFlags(
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
@@ -87,10 +90,12 @@ class SimonGameFragment : Fragment() {
 
                 for (i in newGeneratedSequence) {
                     delay(600)
+                    binding.progressBar3.isVisible = true
                     buttons[i].setColorFilter(Color.GREEN)
                     delay(600)
                     buttons[i].setColorFilter(Color.GRAY)
                 }
+                binding.progressBar3.isVisible = false
                 activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             }
         })
