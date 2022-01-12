@@ -13,15 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectAndroid">
         <activity
+            android:label="Math"
             android:name=".game.math.MathGameActivity"
             android:exported="true" />
         <activity
+            android:label="Observation"
             android:name=".game.observation.ObservationGameActivity"
             android:exported="true" />
         <activity
+            android:label="Unscramble"
             android:name=".game.unscramble.UnscrambleGameActivity"
             android:exported="true" />
         <activity
+            android:label="Simon"
             android:name=".game.simon.SimonGameActivity"
             android:exported="true" />
         <activity

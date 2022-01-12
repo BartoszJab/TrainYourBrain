@@ -72,12 +72,23 @@ class ObservationGameFragment : Fragment() {
                     binding.textInputEditText.text.toString() == viewModel.numberOfImageOccurrences.value.toString()
                 showFinalDialog(wasGuessCorrect = isGuessCorrect)
 
-                val difficultyString = when (viewModel.difficulty.value!!) {
-                    ObservationDifficulty.EASY -> "easy"
-                    ObservationDifficulty.MEDIUM -> "medium"
-                    ObservationDifficulty.HARD -> "hard"
+                var difficultyString: String
+                var points: Int
+                when (viewModel.difficulty.value!!) {
+                    ObservationDifficulty.EASY -> {
+                        difficultyString = "easy"
+                        points = ObservationDifficulty.EASY.maxRepetitions
+                    }
+                    ObservationDifficulty.MEDIUM -> {
+                        difficultyString = "medium"
+                        points = ObservationDifficulty.MEDIUM.maxRepetitions
+                    }
+                    ObservationDifficulty.HARD -> {
+                        difficultyString = "hard"
+                        points = ObservationDifficulty.HARD.maxRepetitions
+                    }
                 }
-                updateObservationDatabase(difficultyString, isGuessCorrect)
+                updateObservationDatabase(difficultyString, isGuessCorrect, points.toLong())
             }
         }
 
@@ -121,7 +132,7 @@ class ObservationGameFragment : Fragment() {
         activity?.finish()
     }
 
-    private fun updateObservationDatabase(difficulty: String, wasGuessed: Boolean) {
+    private fun updateObservationDatabase(difficulty: String, wasGuessed: Boolean, points: Long) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val documentSnapshot = observationCollectionRef.document(myAuth.currentUser!!.uid).get().await()
@@ -129,13 +140,13 @@ class ObservationGameFragment : Fragment() {
 
                 if (snapshotObservationModel == null) {
                     val user = User(myAuth.currentUser?.displayName, myAuth.currentUser?.photoUrl.toString())
-                    observationCollectionRef.document(myAuth.currentUser!!.uid).set(Observation(user))
+                    observationCollectionRef.document(myAuth.currentUser!!.uid).set(Observation(user)).await()
                 }
-//                if (!documentSnapshot.exists()) {
-//                    observationCollectionRef.document(myAuth.currentUser!!.uid).set(Observation())
-//                }
+
                 val postfix = if (wasGuessed) "guessed" else "not_guessed"
                 observationCollectionRef.document(myAuth.currentUser!!.uid).update("$difficulty.$postfix", FieldValue.increment(1))
+                if (postfix == "guessed") observationCollectionRef.document(myAuth.currentUser!!.uid).update("points", FieldValue.increment(points))
+
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(context, e.message, Toast.LENGTH_LONG).show()

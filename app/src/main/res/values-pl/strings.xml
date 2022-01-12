@@ -47,6 +47,8 @@
     <string name="math_intro_description">Na ekranie wyświetlona zostanie operacja arytmetyczna. Twoim zadaniem jest wybranie poprawnej odpowiedzi spośród czterech.</string>
     <string name="math_intro_description2">Liczba obok tej ikony oznacza pozostałą ilość czasu na odpowiedź.</string>
     <string name="play">Graj</string>
+    <string name="try_to_guess_the_word_from_shuffled_letters">Odgadnij słowo z wymieszanych liter!</string>
+    <string name="you_will_see_a_random_sequence_which_you_have_to_reply_you_have_2_lifes_each_round_the_sequence_gets_longer_good_luck">Wciśnij kwadraty w odpowiedniej kolejności. Masz 2 próby. W każdej kolejnej rundzie sekwencja jest dłuższa.</string>
 
     <string-array name="words">
         <item>kot</item>

@@ -50,6 +50,8 @@
     <string name="math_intro_description2">Number next to this icon is time left for your answer.</string>
     <string name="play">Play</string>
     <string name="observation_game_percentage_value" translatable="false">%d%%</string>
+    <string name="try_to_guess_the_word_from_shuffled_letters">Try to guess the word from shuffled letters!</string>
+    <string name="you_will_see_a_random_sequence_which_you_have_to_reply_you_have_2_lifes_each_round_the_sequence_gets_longer_good_luck">You will see a random sequence which you have to reply?? You have 2 lifes. Each round the sequence gets longer. Good luck</string>
 
 
     <!--    "animal",-->

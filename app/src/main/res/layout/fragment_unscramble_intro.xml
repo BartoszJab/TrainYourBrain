@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="128dp"
-            android:text="Try to guess the word from shuffled letters!"
+            android:text="@string/try_to_guess_the_word_from_shuffled_letters"
             android:textSize="24sp"
             android:padding="10dp"
             android:gravity="center"
