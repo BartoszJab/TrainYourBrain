@@ -1,5 +1,6 @@
 package com.example.projectandroid.game.observation
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -95,7 +96,13 @@ class ObservationGameFragment : Fragment() {
                     binding.ivRandomVector.setImageResource(id)
                     delay(viewModel.difficulty.value!!.imageTimeDuration)
                 }
+
                 binding.visibilityChangeGroup.isVisible = true
+                binding.ivRandomVector.isVisible = false
+                binding.progressBar4.visibility = View.VISIBLE
+                delay(1000)
+                binding.progressBar4.visibility = View.INVISIBLE
+                binding.ivRandomVector.isVisible = true
                 binding.ivRandomVector.setImageResource(viewModel.guessImageId.value!!)
             }
         })
