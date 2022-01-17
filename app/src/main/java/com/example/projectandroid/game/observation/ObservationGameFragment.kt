@@ -1,7 +1,6 @@
 package com.example.projectandroid.game.observation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.projectandroid.R
 import com.example.projectandroid.databinding.FragmentObservationGameBinding
 import com.example.projectandroid.models.Observation
-import com.example.projectandroid.models.Unscramble
 import com.example.projectandroid.models.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
@@ -63,8 +61,6 @@ class ObservationGameFragment : Fragment() {
 
 
         binding.btnSubmit.setOnClickListener {
-            Log.d("OBSERVATION", binding.textInputEditText.text.toString())
-            Log.d("OBSERVATION", viewModel.numberOfImageOccurrences.value.toString())
             if (binding.textInputEditText.text!!.isEmpty()) {
                 binding.textInputEditText.error = getString(R.string.guess_cant_be_empty)
             } else {
@@ -93,7 +89,6 @@ class ObservationGameFragment : Fragment() {
         }
 
         viewModel.imageIdsToShow.observe(viewLifecycleOwner, { newImageIdsToShow ->
-            Log.d("OBSERVATION", "newImageIdsToShow ${newImageIdsToShow.size}")
             lifecycleScope.launch {
                 delay(500)
                 for (id in newImageIdsToShow) {

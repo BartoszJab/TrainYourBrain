@@ -31,8 +31,6 @@ class ObservationFirestoreAdapter(options: FirestoreRecyclerOptions<Observation>
         holder.binding.progressCircleEasy.progress = easyGuessedPercentage
         holder.binding.progressCircleNormal.progress = normalGuessedPercentage
         holder.binding.progressCircleHard.progress = hardGuessedPercentage
-
-        Log.d("OBSERVATION", "${model.normalGuessedPercentage.toInt()} ${model.hardGuessedPercentage.toInt()}")
     }
 
     inner class ObservationViewHolder(val binding: ObservationListItemBinding) : RecyclerView.ViewHolder(binding.root)
