@@ -141,7 +141,7 @@ class SimonGameFragment : Fragment() {
     private fun showFinalDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Game Over")
-            .setMessage("You've lost at round number ${viewModel.roundNumber.value}")
+            .setMessage(getString(R.string.simon_game_summary, viewModel.roundNumber.value))
             .setCancelable(false)
             .setNegativeButton(getString(R.string.exit)) {_, _ -> exitGame()}
             .setPositiveButton(getString(R.string.play_again)) {_, _ -> restartGame()}
