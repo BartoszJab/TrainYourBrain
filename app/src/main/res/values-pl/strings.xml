@@ -38,7 +38,7 @@
     <string name="hard">Trudny</string>
     <string name="easy">Łatwy</string>
     <string name="observation_correctly_guessed">Prawidłowo odgadłeś ilość wystąpień tego obrazka</string>
-    <string name="observation_incorrectly_guessed">Podałeś nieprawidłową liczbę wystąpień tego obrazka</string>
+    <string name="observation_incorrectly_guessed">Podałeś nieprawidłową liczbę wystąpień tego obrazka. Poprawna odpowiedź to %d.</string>
     <string name="observation_difficulty_description">%s - %d obrazków i %.2f sekundy wystąpienia pojedynczego obrazka</string>
     <string name="observation_difficulty_description_label">Opis poziomów trudności</string>
     <string name="guess_cant_be_empty">Odpowiedź nie może być pusta</string>

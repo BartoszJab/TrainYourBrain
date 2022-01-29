@@ -114,7 +114,7 @@ class ObservationGameFragment : Fragment() {
             .setTitle(if (wasGuessCorrect) getString(R.string.congratulations) else getString(R.string.bad_luck))
             .setMessage(
                 if (wasGuessCorrect) getString(R.string.observation_correctly_guessed) else getString(
-                    R.string.observation_incorrectly_guessed
+                    R.string.observation_incorrectly_guessed, viewModel.numberOfImageOccurrences.value
                 )
             )
             .setCancelable(false)
