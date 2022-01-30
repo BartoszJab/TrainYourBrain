@@ -130,7 +130,7 @@ class UnscrambleGameFragment : Fragment() {
 
     private fun showFinalScoreDialog() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.congratulations))
+            .setTitle(getString(R.string.end))
             .setMessage(getString(R.string.you_scored, viewModel.score.value))
             .setCancelable(false)
             .setNegativeButton(getString(R.string.exit)) {_, _ -> exitGame()}
