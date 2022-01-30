@@ -25,11 +25,12 @@
     <string name="password">Hasło</string>
     <string name="confirm_password">Potwierdź hasło</string>
     <string name="register_label">Rejestracja</string>
+    <string name="bad_luck">Niestety!</string>
     <string name="register_button">Zarejestruj się</string>
     <string name="players">Gracze</string>
     <string name="home">Główna</string>
     <string name="profile">Profil</string>
-    <string name="bad_luck">Niestety!</string>
+    <string name="math_summary_title">Operacja: %s</string>
     <string name="how_many_times_have_you_seen_this_image">Ile razy widziałeś ten obrazek?</string>
     <string name="your_guess">Twoja odpowiedź</string>
     <string name="in_this_task_you_have_to_guess_how_many_times_you_ve_seen_an_iamge_shown_at_the_end">W tej grze musisz odpowiedzieć ile razy widziałeś obrazek pokazany na końcu</string>
@@ -43,7 +44,8 @@
     <string name="observation_difficulty_description_label">Opis poziomów trudności</string>
     <string name="guess_cant_be_empty">Odpowiedź nie może być pusta</string>
     <string name="math_operation_string">%d %s %d %s %d</string>
-    <string name="math_dialog_fail_message">Wybrałeś złą odpowiedź. Zdobyłeś %d punktów</string>
+    <string name="math_answer_none"></string>
+    <string name="math_dialog_fail_message">Twoja odpowiedź to: %s. Poprawną odpowiedzią jest: %s. Zdobyłeś: %d punktów</string>
     <string name="math_intro_description">Na ekranie wyświetlona zostanie operacja arytmetyczna. Twoim zadaniem jest wybranie poprawnej odpowiedzi spośród czterech.</string>
     <string name="math_intro_description2">Liczba obok tej ikony oznacza pozostałą ilość czasu na odpowiedź.</string>
     <string name="play">Graj</string>

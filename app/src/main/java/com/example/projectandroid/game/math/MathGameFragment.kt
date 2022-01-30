@@ -63,7 +63,7 @@ class MathGameFragment : Fragment() {
             }
 
             override fun onFinish() {
-                showFinalDialog()
+                showFinalDialog(correctAnswer = viewModel.operation.value?.operationResult.toString())
             }
         }.start()
 
@@ -99,7 +99,7 @@ class MathGameFragment : Fragment() {
                 otherButton.text = wrongAnswer.toString()
 
                 otherButton.setOnClickListener {
-                    showFinalDialog()
+                    showFinalDialog(otherButton.text.toString(), btnCorrectAnswer.text.toString())
                     saveToDatabase()
                     myCounter.cancel()
                 }
@@ -117,10 +117,20 @@ class MathGameFragment : Fragment() {
         _binding = null
     }
 
-    private fun showFinalDialog() {
+    private fun showFinalDialog(userAnswer: String = "brak", correctAnswer: String) {
+        val operation = viewModel.operation.value
+        val xyOperation = operation?.convertEnumOperationToString(operation.operationXY)
+        val yzOperation = operation?.convertEnumOperationToString(operation.operationYZ)
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.bad_luck))
-            .setMessage(getString(R.string.math_dialog_fail_message, viewModel.score.value))
+            .setTitle(getString(R.string.math_summary_title,
+                getString(
+                    R.string.math_operation_string,
+                    viewModel.operation.value?.x,
+                    xyOperation,
+                    viewModel.operation.value?.y,
+                    yzOperation,
+                    viewModel.operation.value?.z)))
+            .setMessage(getString(R.string.math_dialog_fail_message, userAnswer, correctAnswer, viewModel.score.value))
             .setCancelable(false)
             .setNegativeButton(getString(R.string.exit)) { _, _ -> exitGame() }
             .setPositiveButton(getString(R.string.play_again)) { _, _ -> restartGame() }
