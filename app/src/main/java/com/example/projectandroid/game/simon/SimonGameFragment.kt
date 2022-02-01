@@ -102,7 +102,8 @@ class SimonGameFragment : Fragment() {
 
         viewModel.mistakesNumber.observe(viewLifecycleOwner, { newMistakesNumber ->
             if (newMistakesNumber > 0) {
-                heartsViews[newMistakesNumber - 1].setImageResource(R.drawable.ic_heart_broken)
+                if (heartsViews.size >= newMistakesNumber) heartsViews[newMistakesNumber - 1].setImageResource(R.drawable.ic_heart_broken)
+
                 if (newMistakesNumber == MAX_MISTAKES) {
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
